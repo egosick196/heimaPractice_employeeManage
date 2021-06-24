@@ -22,6 +22,7 @@ int main()
 			manager.addMember();
 			break;
 		case 2: //显示职工
+			manager.showEmp();
 			break;
 		case 3: //删除职工
 			break;

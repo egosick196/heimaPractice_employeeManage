@@ -178,6 +178,21 @@ void WorkerManager::initEmp()
 	}
 }
 
+void WorkerManager::showEmp()
+{
+	if (m_preNum <= 0)
+	{
+		cout << "系统中尚不存在职员信息" << endl;
+		return;
+	}
+
+	for (int i = 0; i < m_preNum; i++)
+	{
+		m_preArray[i]->showInfo();
+	}
+	cout << endl;
+}
+
 WorkerManager::~WorkerManager()
 {
 	delete[] m_preArray;
