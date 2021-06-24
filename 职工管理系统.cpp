@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include "WorkerManager.h"
+#include <cstdlib>
 using namespace std;
 
 int main()
@@ -11,7 +12,7 @@ int main()
 	{
 		manager.showMenu();
 		cout << "请输入您的选择" << endl;
-		cin >> choice;
+		cin >> choice;  int position;
 
 		switch (choice)
 		{
@@ -25,10 +26,14 @@ int main()
 			manager.showEmp();
 			break;
 		case 3: //删除职工
+			position = manager.findPosition();
+			if (position == -1) break;
+			manager.delEmp(position);
 			break;
 		case 4: //修改职工
 			break;
 		case 5: //查找职工
+			position = manager.findPosition();
 			break;
 		case 6: //排序职工
 			break;

@@ -2,6 +2,7 @@
 #include "Boss.h"
 #include "Employee.h"
 #include "Manager.h"
+#include <vector>
 
 WorkerManager::WorkerManager()
 {
@@ -192,6 +193,81 @@ void WorkerManager::showEmp()
 	}
 	cout << endl;
 }
+
+int WorkerManager::findPosition()
+{
+	cout << "请选择需要查找的员工信息" << endl
+		<< "1: 员工ID" << endl
+		<< "2: 员工姓名" << endl;
+	int key = 0;  cin >> key;
+	cout << "请输入员工信息: " << endl;
+	int id = 0;  string name;  int position = -1;
+
+	if (key == 1)
+	{
+		cin >> id;
+		for (int i = 0; i < m_preNum; i++)
+		{
+			if (m_preArray[i]->m_ID == id)
+			{
+				position = i;
+			}
+		}
+	}
+	else
+	{
+		cin >> name;  vector<int> candidator;
+		for (int i = 0; i < m_preNum; i++)
+		{
+			if (m_preArray[i]->m_name == name)
+			{
+				candidator.push_back(i);
+			}
+		}
+		if (candidator.size() >= 1)
+		{
+			for (int i : candidator)
+			{
+				m_preArray[i]->showInfo();
+			}
+			cout << "有如上重名员工，请输入目标员工ID：" << endl;
+			cin >> id;
+			for (int i = 0; i < m_preNum; i++)
+			{
+				if (m_preArray[i]->m_ID == id)
+				{
+					position = i;
+				}
+			}
+		}
+	}
+	if (position == -1)
+	{
+		cout << "未找到相应员工" << endl;
+	}
+	else
+	{
+		m_preArray[position]->showInfo();
+	}
+	return position;
+}
+
+void WorkerManager::delEmp(int position)
+{
+	cout << "确认删除该员工信息吗？ y/n: " << endl;
+	string ensure;  cin >> ensure;
+
+	if (ensure == "n") return;
+	for (int i = position; i < m_preNum - 1; i++)
+	{
+		m_preArray[i] = m_preArray[i + 1];
+	}
+	m_preNum--;  saveFile();
+
+	cout << "成功删除对应职工信息" << endl;
+	return;
+}
+
 
 WorkerManager::~WorkerManager()
 {

@@ -16,6 +16,8 @@ public:
 	int getEmpNum();
 	void initEmp();
 	void showEmp();
+	void delEmp(int);
+	int findPosition();
 
 	~WorkerManager();
 

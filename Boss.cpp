@@ -13,7 +13,7 @@ void Boss::showInfo()
 	cout << "职工编号： " << m_ID << endl
 		<< "职工姓名： " << m_name << endl
 		<< "岗位： " << getDeptID() << endl
-		<< "职责：统管公司事务。" << endl;
+		<< "职责：统管公司事务。\n" << endl;
 }
 
 string Boss::getDeptID()
